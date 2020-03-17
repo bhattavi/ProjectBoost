@@ -13,9 +13,17 @@ public class Rocket : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] float rcsThrust = 250f;
     [SerializeField] float mainThrust = 50f;
+
     [SerializeField] AudioClip engineSound;
     [SerializeField] AudioClip deadSound;
     [SerializeField] AudioClip winSound;
+
+    [SerializeField] ParticleSystem engineParticles;
+    [SerializeField] ParticleSystem deadParticles;
+    [SerializeField] ParticleSystem winParticles;
+
+
+
     enum State { Alive, Dying , Transcending};
     State state = State.Alive;
     
@@ -47,19 +55,32 @@ public class Rocket : MonoBehaviour
                
                 break;
             case "Finish":
-                state = State.Transcending;
-                audioSource.Stop();
-                audioSource.PlayOneShot(winSound);
-                Invoke("LoadNewScene", 1f);
+                StartWinSeq();
                 break;
             default:
-                state = State.Dying;
-                audioSource.Stop();
-                audioSource.PlayOneShot(deadSound);
-                Invoke("LoadFirstScene", 1f);
+                StartDeathSeq();
                 break;
         }
     }
+
+    private void StartDeathSeq()
+    {
+        state = State.Dying;
+        audioSource.Stop();
+        audioSource.PlayOneShot(deadSound);
+        deadParticles.Play();
+        Invoke("LoadFirstScene", 1f);
+    }
+
+    private void StartWinSeq()
+    {
+        state = State.Transcending;
+        audioSource.Stop();
+        audioSource.PlayOneShot(winSound);
+        winParticles.Play();
+        Invoke("LoadNewScene", 1f);
+    }
+
     private void LoadFirstScene()
     {
         SceneManager.LoadScene(0);
@@ -80,6 +101,7 @@ public class Rocket : MonoBehaviour
         else
         {
             audioSource.Stop();
+            engineParticles.Stop();
         }
     }
 
@@ -92,6 +114,7 @@ public class Rocket : MonoBehaviour
 
             audioSource.PlayOneShot(engineSound);
         }
+        engineParticles.Play();
     }
 
     private void RespondToRotateInput()
