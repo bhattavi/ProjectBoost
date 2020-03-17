@@ -6,8 +6,8 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
     Rigidbody rigidbody;
-    public float thrust = 100f;
-    public float rotate = 20f;
+    //public float thrust = 100f;
+    //public float rotate = 20f;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,17 +26,17 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             print("THRUST");
-            rigidbody.AddRelativeForce(new Vector3(0, thrust * Time.deltaTime, 0));
+            rigidbody.AddRelativeForce(Vector3.up);
         }
         if (Input.GetKey(KeyCode.A))
         {
             print("ROTATE LEFT");
-            transform.Rotate(new Vector3(0, 0, rotate * Time.deltaTime));
+            transform.Rotate(Vector3.forward);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             print("ROTATE RIGHT");
-            transform.Rotate(new Vector3(0, 0, -rotate * Time.deltaTime));
+            transform.Rotate(-Vector3.forward);
         }
     }
 }
