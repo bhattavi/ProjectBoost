@@ -27,11 +27,26 @@ public class Rocket : MonoBehaviour
         Rotate();
         
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Friendly":
+                print("OK");
+                break;
+            case "Fuel":
+                print("fuel");
+                break;
+            default:
+                print("dead");
+                break;
+        }
+    }
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            print("THRUST");
+            //print("THRUST");
             rigidbody.AddRelativeForce(Vector3.up * mainThrust);
             if (!audioSource.isPlaying)
             {
@@ -51,12 +66,12 @@ public class Rocket : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A))
         {
-            print("ROTATE LEFT");
+            //print("ROTATE LEFT");
             transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            print("ROTATE RIGHT");
+            //print("ROTATE RIGHT");
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
         rigidbody.freezeRotation = false; // resume physics control of rotation after we are done controlling it.
