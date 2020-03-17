@@ -254,6 +254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcsThrust: 100
   mainThrust: 30
+  engineSound: {fileID: 8300000, guid: b8b96ee9b384d405dbd96273182b9da9, type: 3}
+  deadSound: {fileID: 8300000, guid: ec4091ff007e94e41b6a476fd8d641e5, type: 3}
+  winSound: {fileID: 8300000, guid: 531ecfc0dc9cc49068898f2f5beab77c, type: 3}
 --- !u!1 &1856062024615699285
 GameObject:
   m_ObjectHideFlags: 0
