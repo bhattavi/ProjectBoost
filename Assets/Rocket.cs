@@ -9,9 +9,13 @@ public class Rocket : MonoBehaviour
     //public float thrust = 100f;
     //public float rotate = 20f;
     // Start is called before the first frame update
+    AudioSource audioSource;
+
+    //AudioClip audioClip;
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +31,16 @@ public class Rocket : MonoBehaviour
         {
             print("THRUST");
             rigidbody.AddRelativeForce(Vector3.up);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
+
+        }
+        else
+        {
+            audioSource.Stop();
         }
         if (Input.GetKey(KeyCode.A))
         {
