@@ -9,8 +9,9 @@ public class Rocket : MonoBehaviour
     Rigidbody rigidbody;
     // Start is called before the first frame update
     AudioSource audioSource;
-    [SerializeField] float rcsThrust = 250f;
-    [SerializeField] float mainThrust = 1500f;
+    [SerializeField] float rcsThrust = 300f;
+    [SerializeField] float mainThrust = 2000f;
+    [SerializeField] float levelLoadDelay = 2f;
 
     [SerializeField] AudioClip engineSound;
     [SerializeField] AudioClip deadSound;
@@ -67,7 +68,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(deadSound);
         deadParticles.Play();
-        Invoke("LoadFirstScene", 1f);
+        Invoke("LoadFirstScene", levelLoadDelay);
     }
 
     private void StartWinSeq()
@@ -76,7 +77,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(winSound);
         winParticles.Play();
-        Invoke("LoadNewScene", 1f);
+        Invoke("LoadNewScene", levelLoadDelay);
     }
 
     private void LoadFirstScene()
