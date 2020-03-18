@@ -112,6 +112,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &167397138 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6136380750368640641, guid: c599c95abe573417391c9d8b6ecc9085,
+    type: 3}
+  m_PrefabInstance: {fileID: 4953854332249538279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &167397143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167397138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a149ad4eb9074188af3692c256303fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: -20, y: 0, z: 0}
+  movementFactor: 0.37
+  period: 2
 --- !u!108 &170076734 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 4657942807314289230, guid: f79a88e27d73d43b5abe9f1ecef6f962,
@@ -276,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 1856062024568103030, guid: 1e13e10dca23441dbb6da9b165c09bd9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.4
+      value: 9.38
       objectReference: {fileID: 0}
     - target: {fileID: 1856062024568103030, guid: 1e13e10dca23441dbb6da9b165c09bd9,
         type: 3}
@@ -322,6 +343,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860975274468217098, guid: 1e13e10dca23441dbb6da9b165c09bd9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860975274468217098, guid: 1e13e10dca23441dbb6da9b165c09bd9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.48
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e13e10dca23441dbb6da9b165c09bd9, type: 3}
@@ -598,6 +629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Terrain Obstacles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136380750368640653, guid: c599c95abe573417391c9d8b6ecc9085,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c599c95abe573417391c9d8b6ecc9085, type: 3}

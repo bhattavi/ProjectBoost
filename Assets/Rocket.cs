@@ -7,12 +7,10 @@ using UnityEngine.SceneManagement;
 public class Rocket : MonoBehaviour
 {
     Rigidbody rigidbody;
-    //public float thrust = 100f;
-    //public float rotate = 20f;
     // Start is called before the first frame update
     AudioSource audioSource;
     [SerializeField] float rcsThrust = 250f;
-    [SerializeField] float mainThrust = 50f;
+    [SerializeField] float mainThrust = 1500f;
 
     [SerializeField] AudioClip engineSound;
     [SerializeField] AudioClip deadSound;
@@ -107,7 +105,7 @@ public class Rocket : MonoBehaviour
 
     private void ApplyThrust()
     {
-        rigidbody.AddRelativeForce(Vector3.up * mainThrust);
+        rigidbody.AddRelativeForce(Vector3.up * mainThrust*Time.deltaTime);
         if (!audioSource.isPlaying)
         {
 
