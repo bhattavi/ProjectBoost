@@ -21,6 +21,8 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem deadParticles;
     [SerializeField] ParticleSystem winParticles;
 
+    bool collisonEnable = true;
+
 
 
     enum State { Alive, Dying , Transcending};
@@ -42,24 +44,44 @@ public class Rocket : MonoBehaviour
             RespondToRotateInput();
 
         }
+        if (Debug.isDebugBuild)
+        {
+            RespondToDebugKey();
+        }
         
         
     }
+
+    private void RespondToDebugKey()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+
+            LoadNewScene();
+            
+        }else if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisonEnable = !collisonEnable;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) return;
-        switch (collision.gameObject.tag)
-        {
-            case "Friendly":
-               
-                break;
-            case "Finish":
-                StartWinSeq();
-                break;
-            default:
-                StartDeathSeq();
-                break;
-        }
+        
+            if (state != State.Alive || !collisonEnable) return;
+            switch (collision.gameObject.tag)
+            {
+                case "Friendly":
+
+                    break;
+                case "Finish":
+                    StartWinSeq();
+                    break;
+                default:
+                    StartDeathSeq();
+                    break;
+            }
+        
     }
 
     private void StartDeathSeq()
