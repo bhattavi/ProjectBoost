@@ -23,7 +23,10 @@ public class Rocket : MonoBehaviour
 
     bool collisonEnable = true;
 
-
+    int currentSceneIndex;
+    int nextSceneIndex;
+    
+    
 
     enum State { Alive, Dying , Transcending};
     State state = State.Alive;
@@ -48,7 +51,6 @@ public class Rocket : MonoBehaviour
         {
             RespondToDebugKey();
         }
-        
         
     }
 
@@ -109,7 +111,15 @@ public class Rocket : MonoBehaviour
 
     private void LoadNewScene()
     {
-        SceneManager.LoadScene(1);
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        nextSceneIndex = currentSceneIndex + 1;
+        if(nextSceneIndex == SceneManager.sceneCountInBuildSettings)
+        {
+            nextSceneIndex = 0;
+        }
+        
+
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private void RespondToThrustInput()
@@ -121,9 +131,14 @@ public class Rocket : MonoBehaviour
         }
         else
         {
-            audioSource.Stop();
-            engineParticles.Stop();
+            StopApplyThrust();
         }
+    }
+
+    private void StopApplyThrust()
+    {
+        audioSource.Stop();
+        engineParticles.Stop();
     }
 
     private void ApplyThrust()
